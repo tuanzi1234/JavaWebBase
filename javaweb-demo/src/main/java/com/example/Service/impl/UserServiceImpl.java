@@ -15,10 +15,22 @@ import java.util.List;
 //@Component //将类交给IOC容器管理
 @Service
 public class UserServiceImpl implements UserService {
-
-    //调用Dao
-    @Autowired //程序运行时，自动查询该类型的bean，并注入给该成员变量
-    private UserDao userDao ;
+    //了解依赖注入的三种方式
+    //调用Dao方式一：以属性注入的方式
+//    @Autowired //程序运行时，自动查询该类型的bean，并注入给该成员变量
+//    private UserDao userDao ;
+    //调用Dao方式二：以构造函数注入的方式
+//    private final UserDao userDao;//以构造器的方式注入依赖时，对象应当使用final修饰
+//    @Autowired//若构造函数只有一个时，可省略@Autowired注解
+//    public UserServiceImpl(UserDao userDao) {
+//        this.userDao = userDao;
+//    }
+    //调用Dao方式三：以setter注入的方式
+    private UserDao userDao;
+    @Autowired
+    public void setUserDao(UserDao userDao) {
+        this.userDao = userDao;
+    }
     @Override
     public List<User> getUsers() {
         //调用Dao层，获取用户信息
