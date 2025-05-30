@@ -1,0 +1,30 @@
+# 服务端基础配置块
+server:
+  port: 9090  # 服务监听端口
+
+# Spring框架相关配置块
+spring:
+  # 应用基础配置
+  application:
+    name: canteen-manage  # 应用名称
+  
+  # 数据源配置组
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver  # MySQL JDBC驱动类
+    url: jdbc:mysql://localhost:3306/canteen_manage  # 数据库连接地址及库名
+    username: root  # 数据库登录用户名
+    password: lvbohan2003  # 数据库登录密码
+  
+  # Servlet容器配置
+  servlet:
+    multipart:
+      max-file-size: 20MB  # 单个文件上传大小限制
+      max-request-size: 20MB  # 整请求体大小限制
+
+# MyBatis框架配置块
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  # SQL日志输出到控制台
+    map-underscore-to-camel-case: true  # 开启数据库字段_转驼峰命名映射
+  mapper-locations: classpath:mapper/*.xml  # MyBatis映射文件路径
+
